@@ -1,0 +1,3 @@
+The requirements.txt is as close as Python gets to Node.js' super cool package.json file listing all the dependancies you need to install
+
+http://www.learningaboutelectronics.com/Articles/How-to-create-a-requirements-txt-file-for-a-Django-project.php
