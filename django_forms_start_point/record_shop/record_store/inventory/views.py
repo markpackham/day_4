@@ -1,7 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.http import HttpResponse
+from django.shortcuts import redirect
+
 from inventory.models import *
-from .forms import AlbumForm
+from .forms import AlbumForm, ArtistForm
 
 def index(request):
     artists = Artist.objects.all()
@@ -16,4 +18,15 @@ def album_new(request):
             return redirect('index')
     else:
         form = AlbumForm()
-        return render(request, "inventory/album_form.html", {'form': form})
+        return render(request, 'inventory/album_form.html', {'form': form})
+
+def artist_new(request):
+    if request.method == "POST":
+        form = ArtistForm(request.POST)
+        if form.is_valid():
+            artist = form.save(commit=False)
+            artist.save()
+            return redirect('index')
+    else:
+        form = ArtistForm()
+        return render(request, 'inventory/artist_form.html', {'form': form})
